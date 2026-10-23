@@ -1,0 +1,10 @@
+# Recall-oriented tracking for a controlled waste-stream video.
+# Candidates still need temporal association; lowering admission thresholds
+# avoids dropping brief, partially occluded items before a track can form.
+tracker_type: bytetrack
+track_high_thresh: 0.15
+track_low_thresh: 0.05
+new_track_thresh: 0.15
+track_buffer: 45
+match_thresh: 0.75
+fuse_score: true
