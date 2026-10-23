@@ -12,6 +12,7 @@ const LINKS = [
   { href: '/', label: 'Home' },
   { href: '/simulator', label: 'Simulator' },
   { href: '/conveyor-live', label: 'Conveyor Live' },
+  { href: '/review-archive', label: 'Review Archive' },
   { href: '/results', label: 'Results' },
 ]
 

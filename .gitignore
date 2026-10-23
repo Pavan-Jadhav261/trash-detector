@@ -9,6 +9,8 @@ __v0_jsx-dev-runtime.ts
 
 # Environment variables
 .env*.local
+.env
+/data/llm-review/
 
 # Common ignores
 node_modules
