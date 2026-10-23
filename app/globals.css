@@ -102,6 +102,21 @@
   }
 }
 
+@keyframes conveyor-belt {
+  from { background-position: 0 0; }
+  to { background-position: -40px 0; }
+}
+
+@keyframes item-scan {
+  from { transform: translate(-115%, calc(-50% + var(--belt-y))) rotate(-3deg); }
+  to { transform: translate(58vw, calc(-50% + var(--belt-y))) rotate(2deg); }
+}
+
+@keyframes item-route {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--route-x)), calc(-50% + 13rem)) scale(0.62) rotate(5deg); opacity: 0.1; }
+}
+
 @utility animate-scan {
   animation: scan 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
