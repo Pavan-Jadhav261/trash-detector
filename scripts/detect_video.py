@@ -6,6 +6,7 @@ import subprocess
 import sys
 
 import cv2
+import numpy as np
 from ultralytics import YOLO
 
 
@@ -27,17 +28,27 @@ def main(input_path: str, output_path: str, report_path: str) -> None:
     if not writer.isOpened():
         raise RuntimeError("Could not create the annotated video.")
 
-    # The source is a controlled single-item feed: one waste item is presented
-    # per cycle. Counting the best YOLO detection in each cycle is more stable
-    # than carrying tracker IDs across scene changes and hand-held transitions.
-    item_cycle_seconds = float(os.environ.get("WASTE_ITEM_CYCLE_SECONDS", "0.77"))
+    # The source is a controlled single-item feed. A visual scene transition
+    # starts the next item, so each item gets one best-confidence YOLO label.
     items: dict[int, dict] = {}
     frame_index = 0
+    item_index = 0
+    previous_thumbnail = None
+    last_scene_change = -999
+    scene_threshold = 10
+    scene_cooldown_frames = max(4, int(fps * 0.35))
     try:
         while True:
             ok, frame = cap.read()
             if not ok:
                 break
+            thumbnail = cv2.resize(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), (64, 48))
+            if previous_thumbnail is not None:
+                change = float(np.mean(cv2.absdiff(thumbnail, previous_thumbnail)))
+                if change >= scene_threshold and frame_index - last_scene_change >= scene_cooldown_frames:
+                    item_index += 1
+                    last_scene_change = frame_index
+            previous_thumbnail = thumbnail
             result = model.predict(frame, conf=0.05, verbose=False)[0]
             writer.write(result.plot())
             boxes = result.boxes
@@ -45,7 +56,6 @@ def main(input_path: str, output_path: str, report_path: str) -> None:
                 classes = boxes.cls.int().cpu().tolist()
                 confidences = boxes.conf.cpu().tolist()
                 coordinates = boxes.xyxy.cpu().tolist()
-                item_index = int((frame_index / fps) / item_cycle_seconds)
                 for class_id, confidence, (x1, y1, x2, y2) in zip(classes, confidences, coordinates):
                     record = items.get(item_index)
                     if record is None or confidence > record["confidence"]:
