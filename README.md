@@ -2,7 +2,7 @@
 
 ### Intelligent Waste Detection & Classification Using Computer Vision
 
-An AI-powered waste segregation system that leverages computer vision and deep learning to automatically detect and classify waste materials on a conveyor belt. Built using a custom-trained YOLO model on a dataset of **100,000+ images**, the project demonstrates how intelligent vision systems can transform conventional waste management into a smarter, more efficient, and automated process.
+An AI-powered waste segregation system that leverages computer vision and deep learning to automatically detect and classify waste materials on a conveyor belt. Built using a custom-trained YOLO model on a dataset of **1000+ images**, the project demonstrates how intelligent vision systems can transform conventional waste management into a smarter, more efficient, and automated process.
 
 ---
 
@@ -19,7 +19,7 @@ The project combines machine learning, real-time object detection, and an intera
 ## ✨ Key Features
 
 - **AI-Powered Waste Detection:** Uses a custom-trained YOLO model to identify and detect waste materials.
-- **Large-Scale Dataset Training:** Developed using a dataset containing over 100,000 images.
+- **Large-Scale Dataset Training:** Developed using a dataset containing over 1000+ images.
 - **Computer Vision Integration:** Applies deep learning-based visual recognition for waste identification.
 - **Conveyor Belt Simulation:** Demonstrates the waste detection and segregation workflow in a simulated conveyor environment.
 - **Interactive Dashboard:** Provides a frontend interface for presenting and interacting with the system.
@@ -79,7 +79,7 @@ The overall workflow can be represented as:
 
 ## 📊 Dataset & Model Training
 
-The project uses a dataset containing **100,000+ images** to train the custom YOLO-based vision model.
+The project uses a dataset containing **1000+ images** to train the custom YOLO-based vision model.
 
 The training process focuses on enabling the model to recognize and classify different waste materials from visual input.
 
@@ -114,14 +114,7 @@ By demonstrating an automated approach to waste identification and segregation, 
 
 The long-term vision is to move from conventional manual waste handling towards AI-assisted, automated, and scalable waste management systems.
 
-## 👥 Team
 
-Developed as part of the **Conto Hackathon**.
-
-- Aishwarya KM
-- Panav Kumar DVL
-- Mallikarjun
-- Pawan R Jadhav
 
 ## 📌 Project Status
 
